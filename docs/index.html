@@ -10,6 +10,7 @@
   :root { --bg:#fafafb; --card:#fff; --ink:#202124; --sub:#6e7178; --line:#e1e3e8; --accent:#2563eb; }
   @media (prefers-color-scheme: dark) { :root { --bg:#16171a; --card:#1f2024; --ink:#ececee; --sub:#a1a4ab; --line:#33353b; --accent:#4f86f7; } }
   * { box-sizing:border-box; }
+  [hidden] { display:none !important; }
   body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 "Pretendard","맑은 고딕","Malgun Gothic",system-ui,sans-serif; }
   main { max-width:760px; margin:0 auto; padding:56px 16px 72px; }
   header { display:flex; align-items:center; gap:16px; }
@@ -69,6 +70,7 @@
   </section>
 
   <footer>
+    <p>오류가 나거나 바라는 기능이 있으면 <a id="feedback" href="https://github.com/arddong/ardzip/issues/new/choose">버그 신고 · 기능 요청</a>으로 알려 주세요.</p>
     <p>ArdZip 은 무료입니다. 쓰다가 도움이 되었다면 후원으로 응원해 주세요.</p>
     <p>쓴 오픈소스 SharpCompress (MIT) · EggDotNet (MIT) · <a href="THIRD_PARTY_NOTICES.txt">라이선스 전문</a></p>
   </footer>
