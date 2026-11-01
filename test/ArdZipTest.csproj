@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StartupObject>ArdZipTest.T</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\src\ArdZip.cs" />
+    <PackageReference Include="EggDotNet" Version="0.4.0" />
+    <PackageReference Include="SharpCompress" Version="0.50.7" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+bin/
+obj/
+publish/
+dist/
+*.user
+icon_preview.png
+사전조사.md
+지시_대장.md
+**/지시_대장.md
