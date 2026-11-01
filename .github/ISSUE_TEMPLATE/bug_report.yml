@@ -1,0 +1,29 @@
+name: 버그 신고
+description: 오류가 나거나 이상하게 동작할 때
+title: "[버그] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 무슨 일이 있었나요?
+      description: 무엇을 하다가 어떤 오류가 났는지 적어 주세요.
+      placeholder: 예) egg 파일을 오른쪽 클릭으로 풀었더니 오류 창이 떴어요.
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: 오류 내용
+      description: 프로그램의 「오류 보내기」 버튼을 누르면 자동으로 채워집니다.
+      render: text
+  - type: input
+    id: file
+    attributes:
+      label: 파일 종류
+      placeholder: 예) .egg, 120MB, 암호 있음
+  - type: textarea
+    id: extra
+    attributes:
+      label: 더 알려 줄 것
+      description: 화면 캡처가 있으면 붙여 넣어 주세요.

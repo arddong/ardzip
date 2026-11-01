@@ -305,6 +305,18 @@ static class Ui
         return f.ShowDialog(owner) == DialogResult.OK ? box.Text : null;
     }
 
+    // 오류 창 = 「오류 보내기」를 누르면 내용이 채워진 GitHub 버그 신고 양식이 열리고, 같은 내용이 클립보드에도 들어간다
+    public static void ShowError(IWin32Window? owner, Exception ex, string doing)
+    {
+        var ver = typeof(Ui).Assembly.GetName().Version?.ToString(3) ?? "?";
+        var report = $"ArdZip {ver} / {Environment.OSVersion.VersionString}\n하던 일: {doing}\n오류: {ex.GetType().Name}: {ex.Message}\n{ex.StackTrace?.Split('\n').FirstOrDefault()?.Trim()}";
+        var r = MessageBox.Show(owner, ex.Message + "\n\n이 오류를 개발자에게 보낼까요? (내용은 클립보드에도 복사됩니다)", "ArdZip", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+        if (r != DialogResult.Yes) return;
+        try { Clipboard.SetText(report); } catch { }
+        var url = "https://github.com/arddong/ardzip/issues/new?template=bug_report.yml&error=" + Uri.EscapeDataString(report) + "&file=" + Uri.EscapeDataString(doing);
+        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+    }
+
     public static string Size(long b) => b < 1024 ? $"{b} B" : b < 1 << 20 ? $"{b / 1024.0:0.#} KB" : b < 1 << 30 ? $"{b / 1048576.0:0.#} MB" : $"{b / 1073741824.0:0.##} GB";
 
     public static Icon? AppIcon => Icon.ExtractAssociatedIcon(Application.ExecutablePath);
@@ -356,7 +368,7 @@ class JobForm : Form
         catch (Exception ex)
         {
             ExitCode = 1;
-            MessageBox.Show(this, ex.Message, "ArdZip", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            Ui.ShowError(this, ex, _what.Text);
         }
         Close();
     }
@@ -469,7 +481,7 @@ class MainForm : Form
                 pw = Ui.AskPassword(this, path);
                 if (pw == null) return;
             }
-            catch (Exception ex) { MessageBox.Show(this, ex.Message, "ArdZip", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            catch (Exception ex) { Ui.ShowError(this, ex, "목록 보기 " + Path.GetFileName(path)); return; }
         }
         _archive = path; _password = pw;
         _title.Text = Path.GetFileName(path);
@@ -488,7 +500,7 @@ class MainForm : Form
         _bar.Visible = true; _bar.Value = 0; Enabled = false;
         var prog = new Progress<(int done, int total, string name)>(p => { _bar.Maximum = p.total; _bar.Value = Math.Min(p.done, p.total); _status.Text = p.name; });
         try { done(await Task.Run(() => work(prog))); }
-        catch (Exception ex) { MessageBox.Show(this, ex.Message, "ArdZip", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+        catch (Exception ex) { Ui.ShowError(this, ex, _title.Text); }
         finally { _bar.Visible = false; Enabled = true; }
     }
 
