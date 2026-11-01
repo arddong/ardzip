@@ -305,7 +305,7 @@ static class Ui
         return f.ShowDialog(owner) == DialogResult.OK ? box.Text : null;
     }
 
-    // 오류 창 = 「예」를 누르면 오류 내용을 클립보드에 넣고 GitHub 버그 신고 양식을 연다 (양식 칸 자동 채우기는 GitHub 가 받지 않아 붙여 넣기로)
+    // 오류 창 = 「예」를 누르면 오류 내용을 클립보드에 넣고 노션 신고 양식을 연다 (로그인 없이 작성 가능. 칸 자동 채우기는 안 돼서 붙여 넣기로)
     public static void ShowError(IWin32Window? owner, Exception ex, string doing)
     {
         var ver = typeof(Ui).Assembly.GetName().Version?.ToString(3) ?? "?";
@@ -313,7 +313,7 @@ static class Ui
         var r = MessageBox.Show(owner, ex.Message + "\n\n이 오류를 개발자에게 보낼까요?\n「예」를 누르면 오류 내용이 복사되고 신고 화면이 열립니다. 「오류 내용」 칸에 Ctrl+V 로 붙여 넣어 주세요.", "ArdZip", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
         if (r != DialogResult.Yes) return;
         try { Clipboard.SetText(report); } catch { }
-        var url = "https://github.com/arddong/ardzip/issues/new?template=bug_report.yml";
+        var url = "https://chal-na.notion.site/2550a4124c6843fcb1086c9edb7d75f3";
         Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
     }
 
