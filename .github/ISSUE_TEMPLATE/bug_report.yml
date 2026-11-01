@@ -15,7 +15,7 @@ body:
     id: error
     attributes:
       label: 오류 내용
-      description: 프로그램의 「오류 보내기」 버튼을 누르면 자동으로 채워집니다.
+      description: 프로그램 오류 창에서 「예」를 누르면 내용이 복사됩니다. 여기에 Ctrl+V 로 붙여 넣어 주세요.
       render: text
   - type: input
     id: file
