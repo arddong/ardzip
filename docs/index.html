@@ -6,6 +6,14 @@
 <title>ArdZip</title>
 <meta name="description" content="광고 없는 무료 압축 프로그램. zip·7z·rar·alz·egg 풀기, zip 만들기.">
 <link rel="icon" href="icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://arddong.github.io/ardzip/">
+<meta property="og:title" content="ArdZip · 광고 없는 무료 압축 프로그램">
+<meta property="og:description" content="zip · 7z · rar · alz · egg 풀기, zip 만들기. 한글 이름 안 깨짐. 윈도우 10·11.">
+<meta property="og:image" content="https://arddong.github.io/ardzip/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root { --bg:#fafafb; --card:#fff; --ink:#202124; --sub:#6e7178; --line:#e1e3e8; --accent:#2563eb; }
   @media (prefers-color-scheme: dark) { :root { --bg:#16171a; --card:#1f2024; --ink:#ececee; --sub:#a1a4ab; --line:#33353b; --accent:#4f86f7; } }
@@ -44,7 +52,7 @@
 
   <div class="cta">
     <a class="btn primary" id="dl" href="#">무료로 받기</a>
-    <a class="btn" id="sponsor" href="#" hidden>후원하기</a>
+    <a class="btn" id="sponsor" href="#support">후원하기</a>
     <a class="btn" id="feedback" href="https://chal-na.notion.site/2550a4124c6843fcb1086c9edb7d75f3" target="_blank" rel="noopener">버그 신고 · 기능 요청</a>
   </div>
   <p class="meta">윈도우 10·11 64비트 · 관리자 권한 없이 설치 · 64MB</p>
@@ -70,17 +78,20 @@
     </ol>
   </section>
 
+  <section id="support">
+    <h2>후원하기</h2>
+    <p>ArdZip 은 무료입니다. 쓰다가 도움이 되었다면 카카오페이로 응원해 주세요. 폰에서는 아래 버튼, PC 에서는 QR 을 폰 카메라로 찍으면 됩니다.</p>
+    <p><img src="kakaopay.png" alt="카카오페이 송금 QR" width="180" height="180" style="border-radius:8px"></p>
+    <p><a class="btn" href="https://qr.kakaopay.com/281006011000005561484989" target="_blank" rel="noopener">카카오페이로 후원</a></p>
+  </section>
+
   <footer>
-    <p>ArdZip 은 무료입니다. 쓰다가 도움이 되었다면 후원으로 응원해 주세요.</p>
     <p>쓴 오픈소스 SharpCompress (MIT) · EggDotNet (MIT) · <a href="THIRD_PARTY_NOTICES.txt">라이선스 전문</a></p>
   </footer>
 </main>
 <script>
-  // Sponsors 승인되면 위 후원하기 버튼의 hidden 을 지운다
   const REPO = "arddong/ardzip";
-  const SPONSOR = "https://github.com/sponsors/arddong";
   document.getElementById("dl").href = `https://github.com/${REPO}/releases/latest`;
-  document.getElementById("sponsor").href = SPONSOR;
 </script>
 </body>
 </html>
